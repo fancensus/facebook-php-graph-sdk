@@ -26,7 +26,7 @@ namespace Facebook;
 use Facebook\Authentication\AccessToken;
 use Facebook\Exception\SDKException;
 
-class Application implements \Serializable
+class Application
 {
     /**
      * @var string the app ID
@@ -84,35 +84,5 @@ class Application implements \Serializable
     public function getAccessToken()
     {
         return new AccessToken($this->id.'|'.$this->secret);
-    }
-
-    /**
-     * Serializes the Application entity as a string.
-     *
-     * @return string
-     */
-    public function serialize()
-    {
-        return implode('|', [$this->id, $this->secret]);
-    }
-
-    /**
-     * Unserializes a string as an Application entity.
-     *
-     * @param string $serialized
-     */
-    public function unserialize($serialized)
-    {
-        list($id, $secret) = explode('|', $serialized);
-
-        $this->__construct($id, $secret);
-    }
-
-    public function __serialize()
-    {
-    }
-
-    public function __unserialize(array $data)
-    {
     }
 }
